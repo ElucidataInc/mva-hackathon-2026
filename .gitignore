@@ -1,0 +1,37 @@
+# Raw hackathon data must never be committed (the data may not be redistributed)
+data/
+raw/
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+*.bam
+*.bai
+*.cram
+*.crai
+*.sam
+*.vcf
+*.vcf.gz
+*.vcf.gz.tbi
+*.tbi
+*.csi
+*.bcf
+*.g.vcf*
+*.gvcf*
+Challenge_Clinical_Phenotype*
+*genotype*.tsv
+*genotype*.csv
+
+# Caches, work dirs, secrets
+work/
+.nextflow*
+results/raw/
+*.h5
+.env
+*.token
+.DS_Store
+__pycache__/
+.ipynb_checkpoints/
+
+# Local config with paths
+track1/config/config.yaml
