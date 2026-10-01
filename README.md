@@ -38,7 +38,7 @@ Each track's README gives the exact commands. In outline:
 
 ## Compute
 
-A full Track 1 run from FASTQ takes about 7-9 hours on 48 vCPU with 128 GB RAM, with data, references, work files and results on a dedicated 2 TB persistent volume. Track 2 needs little compute and can run on laptops. See [`docs/research/07_data_and_tools.md`](docs/research/07_data_and_tools.md), section 5.
+Analysis runs on a single PNAP s3.c3.medium server (48 vCPU, 128 GB RAM, 2 × 2 TB NVMe) that holds the data, references, work files and results. A full Track 1 run from FASTQ takes about 7-9 hours on this machine. Track 2 needs little compute and can run on laptops. See [`docs/research/07_data_and_tools.md`](docs/research/07_data_and_tools.md), section 5.
 
 ## Contributing
 
