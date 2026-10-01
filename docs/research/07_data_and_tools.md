@@ -7,7 +7,7 @@ The hackathon dataset, the reference resources a Track 1 pipeline needs, tool li
 - The gated dataset is 85.0 GB: 8 FASTQ.gz files (4 lanes, paired), a VCF with index (317.5 MB), an HPO phenotype docx and a README.
 - The working reference set is about 350 GB. The VEP 116 cache already carries gnomAD v4.1 frequencies and ClinVar, so the 761 GB of gnomAD VCFs are optional.
 - A full run from FASTQ needs about 1-1.3 TB of storage in total, including alignments and pipeline scratch.
-- Recommended machine: 48 vCPU and 128 GB RAM, plus a separate 2 TB persistent volume. Provisioned machine: PNAP s3.c3.medium, 48 vCPU, 128 GB RAM, 2 × 2 TB NVMe. A full run from FASTQ needs about 1 TB of storage and takes about 7-9 hours; Track 2 needs little compute and can run on laptops.
+- Recommended machine: 48 vCPU and 128 GB RAM, plus a separate 2 TB persistent volume. Provisioned machine: PNAP s3.c3.medium: Intel i9-14900K, 32 threads, 128 GB RAM (125 GiB usable), 2 × 2 TB NVMe. A full run from FASTQ needs about 1 TB of storage and takes about 7-9 hours; Track 2 needs little compute and can run on laptops.
 - Non-commercial only: MELT, xTea, Manta, LIRICAL, CADD (scores and, read literally, scripts), SpliceAI scores and models, and the dbNSFP academic branch.
 - Permissive: GATK, DeepVariant, WhatsHap, bwa-mem2, CNVkit, gatk-sv, slivar, Talos, nf-cavalier (Apache-2.0, BSD-3 or MIT). TIDDIT is GPL-3.0. Exomiser is AGPL-3.0, which matters only if a modified version is offered as a service.
 - AlphaMissense predictions are CC BY 4.0, so it can replace CADD and SpliceAI for missense scoring.
@@ -194,7 +194,7 @@ Everything derived from the dataset must be deleted by 23 Nov 2026 ([document 06
 | Phenotype ranking | Exomiser; LIRICAL as secondary | 15.1.0 / 2.4.1 | AGPL-3.0 / non-commercial |
 | Reanalysis | Talos | | MIT |
 | Reporting | nf-cavalier | `main` | MIT |
-| Compute | PNAP s3.c3.medium: 48 vCPU, 128 GB RAM, 2 × 2 TB NVMe | | |
+| Compute | PNAP s3.c3.medium: Intel i9-14900K, 32 threads, 128 GB RAM (125 GiB usable), 2 × 2 TB NVMe | | |
 
 ## Open questions
 
