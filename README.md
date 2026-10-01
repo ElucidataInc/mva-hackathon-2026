@@ -25,7 +25,7 @@ The dataset is gated and cannot be redistributed, so it is not in this repositor
 1. Request access on the [dataset page](https://huggingface.co/datasets/SageBio/mva-hackathon-2026-data).
 2. Download it outside the repository and point the config at it (see [`track1/config/config.example.yaml`](track1/config/config.example.yaml)).
 
-It contains one child's whole-genome sequencing (8 paired FASTQ files over 4 lanes), a VCF with index, and HPO phenotype terms: about 85 GB. The VCF is on GRCh38 (no-alt analysis set plus hs38d1 decoy, no `chr` prefix).
+It contains one child's whole-genome sequencing (8 paired FASTQ files over 4 lanes), a VCF with index, and HPO phenotype terms: about 85 GB. The VCF is on GRCh38 (no-alt analysis set plus hs38d1 decoy, with GRC exclusion masking v2, no `chr` prefix).
 
 ## Reproducing the results
 

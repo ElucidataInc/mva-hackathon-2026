@@ -18,11 +18,11 @@ From the Hugging Face API (`/api/datasets/SageBio/mva-hackathon-2026-data` and `
 
 | File | Bytes | Size | Contents |
 |---|---|---|---|
-| `.gitattributes` | 2,575 | 2.6 KB | Git LFS config |
-| `README.md` | 5,076 | 5.1 KB | Dataset card (gated) |
-| `Challenge_Clinical_Phenotype_1.docx` | 16,865 | 16.5 KB | HPO terms |
-| `WGS_EX2312012_HGWCNDSX7.vcf.gz` | 315,153,971 | 300.6 MB | Variant calls: GRCh38 no-alt + hs38d1, Sentieon 202308.02 (thread #17) |
-| `WGS_EX2312012_HGWCNDSX7.vcf.gz.tbi` | 2,343,376 | 2.2 MB | Tabix index |
+| `.gitattributes` | 2,575 | 2.5 KiB | Git LFS config |
+| `README.md` | 5,076 | 5.0 KiB | Dataset card (gated) |
+| `Challenge_Clinical_Phenotype_1.docx` | 16,865 | 16.5 KiB | HPO terms |
+| `WGS_EX2312012_HGWCNDSX7.vcf.gz` | 315,153,971 | 300.6 MiB | Variant calls: GRCh38 no-alt + hs38d1 with GRC exclusion masking v2, Sentieon 202308.02 (VCF header) |
+| `WGS_EX2312012_HGWCNDSX7.vcf.gz.tbi` | 2,343,376 | 2.2 MiB | Tabix index |
 | `..._S16_L001_R1_001.fastq.gz` | 10,467,073,561 | 9.75 GiB | Lane 1, read 1 |
 | `..._S16_L001_R2_001.fastq.gz` | 11,035,873,766 | 10.28 GiB | Lane 1, read 2 |
 | `..._S16_L002_R1_001.fastq.gz` | 10,375,801,767 | 9.66 GiB | Lane 2, read 1 |
@@ -127,7 +127,7 @@ nf-core/raredisease fits Track 1 better than sarek, which targets cancer and lar
 
 Settings for 128 GB: cap Nextflow at 120 GB and 48 CPUs; run bwa-mem2 with 32-40 threads and `samtools sort -@ 8 -m 2G`; run DeepVariant with `--num_shards 48`; build the bwa-mem2 index with nothing else running; never run alignment and DeepVariant at the same time. nf-core/raredisease defaults these steps to 12 CPUs and 72 GB, so raise them in the config.
 
-Use a dedicated volume for the hackathon data rather than a shared one, so it can be wiped and deleted in one step by 23 Nov 2026. Release the machine between compute windows; the volume keeps the data and references.
+Use a dedicated volume for the hackathon data rather than a shared one, so it can be wiped and deleted in one step by 23 Nov 2026. On the provisioned bare-metal server the data sit on the local NVMe, so releasing the server deletes them; keep it running until the work is finished and the deletion is confirmed.
 
 ### 5.2 Storage budget
 
