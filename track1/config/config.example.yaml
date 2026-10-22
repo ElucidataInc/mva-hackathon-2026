@@ -1,7 +1,0 @@
-# Copy to config.yaml (git-ignored) and edit. Keep all data outside this repository.
-data_dir: /path/outside/repo/mva-hackathon-2026-data
-vcf: WGS_EX2312012_HGWCNDSX7.vcf.gz
-fastq_glob: WGS_EX2312012_HGWCNDSX7_S16_L00*_R*_001.fastq.gz
-phenotype: Challenge_Clinical_Phenotype_1.docx
-reference_fasta: /path/to/GCA_000001405.15_GRCh38_no_alt_analysis_set.fasta
-output_dir: /path/outside/repo/results

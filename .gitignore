@@ -22,10 +22,14 @@ Challenge_Clinical_Phenotype*
 *genotype*.tsv
 *genotype*.csv
 
+# Step outputs, installed environments and external sources
+results/
+.pixi/
+env/cue/cue/
+
 # Caches, work dirs, secrets
 work/
 .nextflow*
-results/raw/
 *.h5
 .env
 *.token

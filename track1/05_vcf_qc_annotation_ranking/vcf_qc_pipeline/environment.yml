@@ -1,0 +1,19 @@
+# conda env create -f environment.yml && conda activate vcf-qc
+# Core (bcftools, htslib, vcftools, python libs) is enough for every module except the optional ones.
+name: vcf-qc
+channels: [conda-forge, bioconda]
+dependencies:
+  - python>=3.9
+  - numpy
+  - matplotlib
+  - bcftools>=1.17        # stats, norm, +guess-ploidy, +check-ploidy, roh, +mendelian2, annotate, plot-vcfstats
+  - htslib                # bgzip / tabix
+  - vcftools              # missingness, het/F, HWE, depth
+  # ---- optional (each enables an extra module / section) ----
+  - gatk4                 # ValidateVariants, CollectVariantCallingMetrics
+  - somalier              # relatedness, sex, ancestry projection onto 1000G
+  - peddy                 # pedigree / sex / het checks
+  - rtg-tools             # vcfeval truth concordance
+  # - hap.py              # truth concordance (python2-era; install separately or use the docker image)
+  # - ensembl-vep         # functional annotation (needs a cache: vep_install -a cf -s homo_sapiens -y GRCh38)
+  # - snpeff              # alternative functional annotation

@@ -1,0 +1,9 @@
+# conda env create -f environment.yml && conda activate vcf-hc
+name: vcf-hc
+channels: [conda-forge, bioconda]
+dependencies:
+  - bcftools>=1.16
+  - htslib            # bgzip, tabix
+  - samtools          # samtools faidx: indexes the FASTA if .fai is missing
+  - ensembl-vep       # then download a cache matching the VEP version (see README)
+  - matplotlib        # optional: plot-vcfstats figures
