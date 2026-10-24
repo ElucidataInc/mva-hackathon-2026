@@ -1,0 +1,9 @@
+gene,desired_action,context,because,source
+MAP2K1,INHIB,germline_pathway,LZTR1 LoF -> RAS stabilisation -> MAPK up,literature; verify
+MAP2K2,INHIB,germline_pathway,LZTR1 LoF -> RAS stabilisation -> MAPK up,literature; verify
+SOS1,INHIB,germline_pathway,LZTR1 LoF -> RAS pathway up,literature; verify
+PARP1,INHIB,tumour,SMC5/6-SLF2 / FA-HR defect -> HR-deficiency-like vulnerability,hypothesis; your sheet (BUB1+PARPi)
+ATR,INHIB,tumour,replication-stress / CIN dependency; BUB1+ATR synergy,your sheet
+CHEK1,INHIB,tumour,SLF2-deficient DLBCL + CHK1/2 inhibitor,your sheet
+SAE1,INHIB,tumour,SUMOylation inhibition synthetic lethal with SLF2 loss (TAK-981),your sheet
+UBA2,INHIB,tumour,SUMOylation inhibition synthetic lethal with SLF2 loss (TAK-981),your sheet
