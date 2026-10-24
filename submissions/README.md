@@ -1,3 +1,3 @@
 # Submissions
 
-Track 1 predictions file as submitted.
+Track 1 and Track 2 predictions file as submitted.
