@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Track 2 Drug Ranking</title>
+<style>
+:root{--bg:#fbfaf7;--fg:#1d1d1b;--mut:#5f5e58;--line:#dedbd2;--card:#ffffff;--acc:#2f5d8a;--ok:#2e6b3f;--warn:#8a5a12;--bad:#8a2b2b;--chip:#eef2f6}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#151514;--fg:#ecebe6;--mut:#a3a29b;--line:#34332f;--card:#1d1d1b;--acc:#8db4dc;--ok:#8cc79b;--warn:#e0b26a;--bad:#e39a9a;--chip:#232a31}}
+:root[data-theme="dark"]{--bg:#151514;--fg:#ecebe6;--mut:#a3a29b;--line:#34332f;--card:#1d1d1b;--acc:#8db4dc;--ok:#8cc79b;--warn:#e0b26a;--bad:#e39a9a;--chip:#232a31}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+main{max-width:1080px;margin:0 auto;padding:28px 16px 60px}
+h1{font-size:1.6rem;margin:0 0 4px}
+h2{font-size:1.15rem;margin:34px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+p,li{color:var(--fg)}
+.sub{color:var(--mut);margin:0 0 18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:10px 0}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th,td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+th{color:var(--mut);font-weight:600;font-size:.8rem;text-transform:uppercase;letter-spacing:.03em}
+.wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--card)}
+.rank{font-weight:700;font-size:1.1rem;color:var(--acc)}
+.chip{display:inline-block;background:var(--chip);border-radius:999px;padding:1px 9px;font-size:.78rem;margin:2px 4px 2px 0}
+.ok{color:var(--ok)}.warn{color:var(--warn)}.bad{color:var(--bad)}
+a{color:var(--acc)}
+code{font-size:.85em}
+ul{padding-left:20px;margin:6px 0}
+.flow{display:flex;flex-wrap:wrap;align-items:stretch;gap:0;margin:12px 0}
+.step{flex:1 1 170px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;position:relative;margin:6px 22px 6px 0}
+.step:not(:last-child)::after{content:"";position:absolute;right:-17px;top:50%;width:0;height:0;border-top:8px solid transparent;border-bottom:8px solid transparent;border-left:11px solid var(--acc);transform:translateY(-50%)}
+.step .n{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--acc);color:var(--bg);font-weight:700;font-size:.8rem;margin-right:6px}
+.step h3{display:flex;align-items:center;font-size:.95rem;margin:0 0 8px}
+.step .q{color:var(--mut);font-size:.8rem;margin:0 0 6px}
+.gate{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.gate div{flex:1 1 200px;border-left:4px solid var(--acc);background:var(--card);border-radius:6px;padding:8px 10px;font-size:.85rem}
+.gate div b{display:block;font-size:.8rem;color:var(--mut);text-transform:uppercase;letter-spacing:.03em}
+@media (max-width:640px){.step{margin-right:0}.step:not(:last-child)::after{right:50%;top:auto;bottom:-15px;transform:translateX(50%) rotate(90deg)}}
+</style>
+</head>
+<body>
+<main>
+<h1>Track 2: ranked drug candidates</h1>
+<p class="sub">Draft for team review. Proband WGS, BUB1B compound-heterozygous candidate. Every claim carries the PMID or database record it was checked against on 23 Oct 2026; abstract-level evidence is marked as such.</p>
+
+<div class="card">
+<strong>Scope rule.</strong> Market-approved drugs only; combinations of approved drugs allowed; investigational compounds out of scope (organiser ruling, thread #5, recorded in <code>research_originals/06</code>). Approval status was read from the Polly biomedical knowledge graph v2 (ChEMBL-derived <code>max_phase</code>, <code>first_approval</code>, black-box flag) and, for ataluren, the EMA EPAR.
+</div>
+
+<h2>How the candidates were found</h2>
+<div class="flow">
+<div class="step"><h3><span class="n">1</span>Start</h3><p class="q">Which genes?</p><span class="chip">Track 1 top-10 rows</span><span class="chip">11 MVA marker genes</span></div>
+<div class="step"><h3><span class="n">2</span>Mechanism</h3><p class="q">What does each variant do?</p><span class="chip">Ensembl VEP (codon)</span><span class="chip">UniProt (domain)</span><span class="chip">Exomiser</span><span class="chip">Pfam / InterPro</span><span class="chip">GO / KEGG</span></div>
+<div class="step"><h3><span class="n">3</span>Search</h3><p class="q">Which drugs touch the gene or pathway?</p><span class="chip">Polly KG v2</span><span class="chip">ChEMBL</span><span class="chip">Open Targets</span><span class="chip">PubMed (data corpus)</span></div>
+<div class="step"><h3><span class="n">4</span>Filter</h3><p class="q">Does it pass the four gates below?</p><span class="chip">Approved?</span><span class="chip">Right direction?</span><span class="chip">Evidence?</span><span class="chip">Safety?</span></div>
+<div class="step"><h3><span class="n">5</span>Rank</h3><p class="q">Output</p><span class="chip ok">4 ranked candidates</span><span class="chip bad">7 classes excluded</span></div>
+</div>
+<div class="card"><strong>Run alongside this, as a control:</strong> an independent network-proximity screen over the whole disease module, at two STRING thresholds. It returned no candidate surviving multiple-testing correction, and the drugs it did surface are the one class this patient should not receive. Section 2 reports it, and it is the reason the candidates here are derived from the allele rather than from target proximity.</div>
+<div class="gate">
+<div><b>Gate 1 · Approved</b>max_phase 4 in Polly KG v2 / ChEMBL; EMA EPAR for ataluren</div>
+<div><b>Gate 2 · Direction</b>Loss of function: must raise BUBR1 or treat a consequence, never inhibit the checkpoint</div>
+<div><b>Gate 3 · Evidence</b>BubR1-specific data first (mouse or patient cells), then related disorders</div>
+<div><b>Gate 4 · Safety</b>Boxed-warning flag, label warnings, paediatric labelling</div>
+</div>
+
+<h2>1. Variant mechanism</h2>
+<div class="wrap"><table>
+<tr><th>Allele</th><th>Effect</th><th>Evidence</th></tr>
+<tr><td>BUB1B c.2210T&gt;G p.(Leu737Ter), chr15:40209701 T&gt;G</td><td>Codon TTA becomes TGA (UGA stop); next base A. Exon 17 of 23, nonsense-mediated decay predicted. Stop lies before the kinase domain.</td><td>Ensembl VEP REST (ENST00000287598.11); UniProt O60566 kinase domain 766–1050; ClinVar P/LP</td></tr>
+<tr><td>BUB1B c.3006T&gt;G p.(Asn1002Lys), chr15:40220612 T&gt;G</td><td>Codon AAT becomes AAG. Exon 23 of 23, inside the kinase domain. AlphaMissense 0.92; not in ClinVar.</td><td>Ensembl VEP REST; UniProt O60566</td></tr>
+</table></div>
+<div class="card">
+<ul>
+<li><strong>Class: loss of function by BUBR1 dosage.</strong> In MVA patient cells, truncating BUB1B alleles produce no transcript, kinase-domain missense proteins turn over quickly, total BUBR1 is low, and re-expressing BUBR1 restores the mitotic checkpoint (PMID 20516114, patient cells).</li>
+<li><strong>Pathway:</strong> spindle assembly checkpoint. Too little BUBR1 lets APC/C–CDC20 trigger anaphase before all chromosomes attach, giving missegregation and mosaic aneuploidy (checkpoint biology in team review 05a §1.1; impaired checkpoint in MVA patient cells, PMID 20516114).</li>
+<li><strong>Downstream consequences:</strong> childhood cancer predisposition, mainly Wilms tumour and rhabdomyosarcoma (PMID 15475955; AACR 2024, PMID 39264246); senescence-driven progeroid features in BubR1-low mice (PMID 22048312, mouse).</li>
+<li><strong>Allele context:</strong> in mice, a truncating MVA allele (X753) combined with a kinase-domain missense (L1002P, human L1012P) caused premature death, while milder allele combinations were viable (PMID 31738183, mouse, abstract). Phase in this proband is unconfirmed.</li>
+<li><strong>Therapeutic direction:</strong> raise functional BUBR1, or treat downstream consequences. Never weaken the checkpoint further.</li>
+</ul>
+</div>
+
+<h2>2. Systematic network screen, and why it returns nothing usable</h2>
+<p class="sub">An independent pipeline screened the whole disease module: STRING network expansion around 22 seed genes, OmniPath directed edges for rescue direction, drug mapping through ChEMBL and DGIdb, then Open Targets, FAERS and ClinicalTrials.gov evidence, ranked by network proximity against 1,000 degree-matched permutations. Run twice, at STRING confidence cutoffs 700 and 400.</p>
+<div class="wrap"><table>
+<tr><th>Measure</th><th>Cutoff 700</th><th>Cutoff 400</th></tr>
+<tr><td>Drugs ranked</td><td>2,963</td><td>2,963</td></tr>
+<tr><td>Nominally significant (p &lt; 0.05)</td><td>220</td><td>179</td></tr>
+<tr><td class="ok">Surviving multiple-testing correction (FDR &lt; 0.05)</td><td class="bad">0</td><td class="bad">0</td></tr>
+<tr><td>Lowest FDR in the sheet</td><td>0.174</td><td>0.228</td></tr>
+<tr><td>Rows below FDR 0.25</td><td>17</td><td>13, of which 10 shared</td></tr>
+<tr><td>Rows below FDR 0.25 with CDC7 removed</td><td>13</td><td class="bad">0</td></tr>
+</table></div>
+<div class="card">
+<ul>
+<li><strong>Nothing survives correction at either cutoff.</strong> 220 drugs reach nominal significance and none of them clears FDR 0.05. The pipeline's own parameter sheet records the same conclusion: <em>computational hypotheses only; not validated</em>.</li>
+<li><strong>The rows below FDR 0.25 are a tied block, not a ranking.</strong> All 17 sit at the permutation floor, p = 1/1001, so they share one FDR value. Order inside the block comes from the z-score alone.</li>
+<li><strong>The threshold is not the limitation.</strong> Rerunning at the looser cutoff surfaced more chemotherapy, not different biology: the three drugs unique to cutoff 400 are carboplatin, cisplatin and gemcitabine.</li>
+<li><strong>The shortlist collapses without one artefact gene.</strong> CDC7 sits in the module, but its variant was excluded from the Track 1 submission on read-level evidence. Rerunning with CDC7 removed takes the rows below FDR 0.25 from 17 to 13 at cutoff 700 and from 13 to none at cutoff 400. The four drugs that change tier are the four CDC7 inhibitors: simurosertib, BMS-863233, NMS-1116354 and RXDX-103. The Spearman correlation of z with the original run stays above 0.99, so the global ranking looks stable while the marginal findings do not survive.</li>
+<li><strong>Every drug the screen returns belongs to the class to avoid here.</strong> Across both runs the union of 20 unique drugs is cytotoxic chemotherapy, inhibitors of mitotic and replication kinases, and one kinase probe binding TRIP13 and BUB3, hitting POLA1, PRIM1/2, CDK1/2, CDC7, CHEK1 and AURKA/B. Two illustrate the problem exactly. Paclitaxel's target list includes the MVA gene MAD1L1, so overlap with the disease module is what a mitotic poison looks like and is a reason to exclude rather than shortlist. CHEMBL5653589, identified as the NVP-BHG712 regioisomer, carries kinobead pull-down affinities for TRIP13 (Kd 53 nM) and BUB3 (Kd 68 nM) curated in ChEMBL (PMID 29928781); since biallelic TRIP13 loss itself causes MVA (PMID 28553959), a compound binding it is mechanistically concerning and excluded pending functional verification. Binding affinity alone does not establish functional inhibition, so this is a prioritisation exclusion rather than a demonstrated clinical contraindication.</li>
+<li><strong>Reading:</strong> the disease module is built from DNA replication and mitosis proteins, which are the proteins oncology has spent decades drugging. A proximity screen over that module returns chemotherapy close to by construction, tracking drug-database density rather than therapeutic fit. For a child with a chromosomal instability syndrome who is sensitive to chemotherapy and radiation (PMID 39264246), that is the worst available class.</li>
+<li><strong>Consequence for this proposal:</strong> the candidates below are not drawn from that screen. They come from the proband's own allele and from BubR1 protein abundance. Neither mechanism is a drug-target edge, which is precisely why a target-proximity method cannot surface them, and the screen above is the evidence that it does not.</li>
+</ul>
+</div>
+
+<h2>3. Ranked candidates</h2>
+<div class="wrap"><table>
+<tr><th>#</th><th>Drug and status</th><th>Mechanism link</th><th>Strongest evidence</th><th>Main gap or risk</th><th>First test</th></tr>
+<tr>
+<td class="rank">1</td>
+<td><strong>Niacin</strong> (nicotinic acid), NAD⁺ precursor<br><span class="chip ok">CHEMBL573, max_phase 4, 1982</span></td>
+<td>NAD⁺ lets SIRT2 keep BubR1 Lys668 deacetylated, which raises BubR1 abundance. Targets the fast-turnover missense allele.</td>
+<td>NMN raised BubR1 in vivo; SIRT2 overexpression extended median lifespan of BubR1-hypomorphic mice (PMID 24825348, mouse). SIRT2 transgene rescues the BubR1 hypomorph but not wild-type lifespan (PMID 38009412, mouse). Human NAD⁺ precursor in a genome-instability disorder: nicotinamide riboside in 24 ataxia-telangiectasia patients, no adverse effects (PMID 34515380); 2-year use well tolerated (PMID 37899683).</td>
+<td>No BubR1 experiment with niacin itself; NMN and nicotinamide riboside are not approved (NR max_phase 3). Paediatric safety of niacin ≤16 years not established (label, team review 05b). Nicotinamide is avoided because it inhibits Sir2 and SIRT1 in vitro (PMID 12297502).</td>
+<td>BUBR1 protein and mitotic-checkpoint assay in patient-derived cells with and without an NAD⁺ precursor.</td>
+</tr>
+<tr>
+<td class="rank">2</td>
+<td><strong>Gentamicin</strong>, aminoglycoside read-through<br><span class="chip ok">CHEMBL6067485, max_phase 4, 1970</span> <span class="chip warn">boxed warning</span></td>
+<td>Allele-specific: suppresses the UGA premature stop at codon 737 to restore full-length BUBR1 from the stop-gain allele.</td>
+<td>UGA gives the highest aminoglycoside read-through of the three stop codons; next-base order C &gt; U &gt; A ≥ G (PMID 10939566, cells). IV gentamicin in 5 children aged 3 months to 10 years with nonsense variants restored protein, with no ototoxic or nephrotoxic effects (PMID 35234826, open-label).</td>
+<td>Truncating MVA alleles leave little transcript (PMID 20516114), so template is limited. Read-through inserts a near-cognate amino acid at position 737, of unknown effect. Rescues one allele only. Boxed oto- and nephrotoxicity warning. Ataluren excluded: EU authorisation not renewed on 28 March 2025 (EMA EPAR) and not FDA-approved (PMID 40156864).</td>
+<td>BUB1B mRNA and full-length BUBR1 in patient cells after gentamicin.</td>
+</tr>
+<tr>
+<td class="rank">3</td>
+<td><strong>Dasatinib</strong>, senolytic (± quercetin)<br><span class="chip ok">max_phase 4, 2006</span> <span class="chip">quercetin max_phase 3</span></td>
+<td>Clears senescent cells that drive progeroid features when BubR1 is low. Treats a consequence, not the cause.</td>
+<td>Genetic clearance of p16-positive senescent cells delayed and attenuated age-related disorders in BubR1 progeroid mice (PMID 22048312, mouse). Dasatinib plus quercetin cleared senescent cells in other progeroid models, not BubR1 (PMID 25754370, per team review 05b).</td>
+<td>No pharmacological senolytic test in a BubR1 model. Myelosuppression in a child with cancer predisposition. Quercetin is a supplement, not an approved drug.</td>
+<td>Senescence markers in patient fibroblasts with dasatinib alone and with quercetin.</td>
+</tr>
+<tr>
+<td class="rank">4</td>
+<td><strong>Sirolimus / everolimus</strong>, mTORC1 inhibition<br><span class="chip ok">max_phase 4, 1999 / 2009</span> <span class="chip warn">boxed warning</span></td>
+<td>mTORC1 hyperactivity correlated with sarcopenia in mice carrying monoallelic MVA BubR1 mutations.</td>
+<td>PMID 31738183 (mouse, abstract only; full text not accessible). Everolimus is labelled for a paediatric rare genetic disorder (TSC-associated SEGA from 1 year; team review 05b).</td>
+<td>Rapamycin not tested in any BubR1 model found. Boxed malignancy and immunosuppression warnings sit badly with a cancer-predisposition syndrome.</td>
+<td>mTORC1 activity (pS6) in patient-derived muscle or fibroblast cells.</td>
+</tr>
+</table></div>
+
+<h2>4. Considered and excluded</h2>
+<div class="wrap"><table>
+<tr><th>Drug or class</th><th>Reason</th><th>Source</th></tr>
+<tr><td>Ataluren</td><td>EU conditional authorisation not renewed (28 March 2025); never FDA-approved</td><td>EMA EPAR; PMID 40156864</td></tr>
+<tr><td>NMN, nicotinamide riboside, quercetin alone, fisetin</td><td>Not approved drugs</td><td>Polly BKG v2 / ChEMBL max_phase; team review 05b</td></tr>
+<tr><td>Nicotinamide</td><td>Inhibits Sir2 and SIRT1 in vitro, against the SIRT2 rationale</td><td>PMID 12297502</td></tr>
+<tr><td>BUB1, CDC20, TRIP13, PLK4, MPS1/TTK, Aurora and KIF18A inhibitors (including the SAC drug file)</td><td class="bad">Wrong direction: further weaken a checkpoint that is already deficient; all investigational except off-target agents</td><td>PMID 33505028; team review 05a/05b; SAC_genes_drug_candidates.xlsx</td></tr>
+<tr><td>PARP inhibitors</td><td class="bad">MDS/AML label warnings and clastogenicity in a chromosomal-instability syndrome</td><td>FDA labels, team review 05b</td></tr>
+<tr><td>Venetoclax</td><td>BCL-2 selective; lacks the BCL-xL activity behind senolysis</td><td>Team review 05b</td></tr>
+<tr><td>Metformin</td><td>No BubR1, checkpoint or aneuploidy mechanism found</td><td>Team review 05b</td></tr>
+</table></div>
+
+<h2>5. Care context the proposal sits on</h2>
+<div class="card"><ul>
+<li>Current care is surveillance: renal ultrasound every 3 months from birth to age 7 for MVA (AACR 2024, PMID 39264246; full text read in team review 01).</li>
+<li>Children with genomic-instability disorders can be very sensitive to radiation and chemotherapy (PMID 39264246); reduced-intensity chemotherapy has been reported for rhabdomyosarcoma in MVA (PMID 31184400, title only, no abstract).</li>
+</ul></div>
+
+<h2>6. Open items before the report</h2>
+<div class="card"><ul>
+<li>Team decision on ranks 1 and 2: the niacin route has the stronger biology, the gentamicin route is the more patient-specific and innovative idea.</li>
+<li>Whether to present ranks 1 and 2 as a combination: both raise BUBR1, one per allele, by independent mechanisms. This is a hypothesis with no published test.</li>
+<li>Whether the pitch leads with the screen result or with the candidates. The screen is the stronger rigour argument and supplies its own negative control; the candidates are what the track asks for. The current ordering puts the screen first and uses it to justify the candidates.</li>
+</ul></div>
+</main>
+</body>
+</html>

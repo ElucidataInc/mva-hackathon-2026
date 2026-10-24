@@ -32,10 +32,6 @@ A network-proximity screen was run alongside as a control. No drug survived mult
 
 From the screen's run parameters: module of 22 seed genes; STRING confidence cutoffs 700 and 400; drugs mapped through ChEMBL and DGIdb (5,460 gene-drug rows, 2,963 drugs); for each drug, the average shortest-path distance from its targets to the nearest module gene, compared with 1,000 degree-matched random target sets (z, empirical p, Benjamini-Hochberg FDR across all drugs). With 1,000 permutations the smallest possible p is 1/1001, so the best reachable FDR is 0.174 at STRING 700.
 
-## Generative AI
-
-Anthropic Claude (Sonnet and Opus models), Elucidata business plan (Team/Enterprise), commercial terms, no training on customer content; no feedback or ratings were given on outputs. Used for literature and database searches (PubMed, ChEMBL, knowledge-graph queries), summarising and cross-checking evidence tables, and drafting documentation.
-
 ## Data
 
 Only public drug and target databases and literature were used. No individual-level sequencing data is included in this folder.

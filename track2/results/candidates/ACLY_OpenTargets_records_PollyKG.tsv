@@ -1,0 +1,23 @@
+#	drug_id	drug_from_source	clinical_stage	direction_on_target	direction_on_trait	disease_from_source	disease_id	clinical_report_id	trial_start	opentargets_score	literature_pmids
+1	CHEMBL3545313	BEMPEDOIC ACID	APPROVAL	LoF	protect	familial hypercholesterolemia	EFO_0004911	label/2020/211616s000lbl.pdf		1.0	
+2	CHEMBL3545313	BEMPEDOIC ACID	APPROVAL	LoF	protect	coronary artery disease	EFO_0001645	label/2020/211616s000lbl.pdf		1.0	
+3	CHEMBL3545313	BEMPEDOIC ACID	APPROVAL	LoF	protect	familial hypercholesterolemia	EFO_0004911	88d06d89-a3da-40b4-b273-8f4f7d56c4c9		1.0	
+4	CHEMBL3545313	BEMPEDOIC ACID	APPROVAL	LoF	protect	atherosclerosis	EFO_0003914	88d06d89-a3da-40b4-b273-8f4f7d56c4c9		1.0	
+5	CHEMBL3545313	BEMPEDOIC ACID	APPROVAL	LoF	protect	familial hypercholesterolemia	EFO_0004911	3fa2108c-0300-47b8-9d34-f762af7c93c6		1.0	
+6	CHEMBL3545313	BEMPEDOIC ACID	APPROVAL	LoF	protect	atherosclerosis	EFO_0003914	3fa2108c-0300-47b8-9d34-f762af7c93c6		1.0	
+7	CHEMBL3545313	bempedoic acid	APPROVAL	LoF	protect	dyslipidemias	MONDO_0002525	emea/h/c/004959		1.0	
+8	CHEMBL3545313	bempedoic acid	APPROVAL	LoF	protect	familial hypercholesterolemia	EFO_0004911	d0d9ny/familial hypercholesterolemia		1.0	
+9	CHEMBL3545313	BEMPEDOIC ACID	APPROVAL	LoF	protect	cardiovascular disease	EFO_0000319	c10ax15		1.0	
+10	CHEMBL3545313	etc-1002	PHASE_3	LoF	protect	atherosclerotic cardiovascular diseases	EFO_0000319	nct02666664	2016-01-21	0.7	27892461;24222016;21600525;18537526;11535564;30865796;36813656;35916348;32609313
+11	CHEMBL3545313	bempedoic acid	PHASE_3	LoF	protect	atherosclerotic cardiovascular disease	EFO_0000319	nct02988115	2016-11-16	0.7	27892461;21067804;20444930;15635109;25994746;35916348;32609313;30922146
+12	CHEMBL3545313	bempedoic acid	PHASE_3	LoF	protect	atherosclerotic cardiovascular disease	EFO_0000319	nct02991118	2016-11-18	0.7	31714986;27892461;21067804;26039521;23461430;24222016;35916348;32609313
+13	CHEMBL3545313	bempedoic acid	PHASE_3	LoF	protect	atherosclerosis	EFO_0003914	nct03001076	2016-11-29	0.7	27892461;27663902;27206943;27138185;26073387;29910030;35916348;32609313
+14	CHEMBL3545313	bempedoic acid 180 mg tablet	PHASE_3	LoF	protect	cardiovascular diseases	EFO_0000319	nct02993406	2016-12-22	0.7	27892461;27663902;27206943;26073387;33470195;36876740;37354546;40833562;39939212;39921511;38960508;38061370;37929602
+15	CHEMBL3545313	bempedoic acid	PHASE_3	LoF	protect	atherosclerotic cardiovascular disease	EFO_0000319	nct03067441	2017-02-03	0.7	27892461;24222016;21600525;18537526;11535564
+16	CHEMBL3545313	bempedoic acid + ezetimibe fixed-dose combination	PHASE_3	LoF	protect	hyperlipidemias	MONDO_0021187	nct03337308	2017-10-23	0.7	27892461;21067804;27594540;27673306;24222016;31357887
+17	CHEMBL3545313	bempedoic acid	PHASE_3	LoF	protect	cardiovascular disease	EFO_0000319	d0d9ny/cardiovascular disease		0.7	
+18	CHEMBL3545313	etc-1002	PHASE_2	LoF	protect	dyslipidemia	Orphanet_309005	nct01262638	2010-12-31	0.2	23770179
+19	CHEMBL3545313	etc-1002	PHASE_2	LoF	protect	hyperlipidemia	MONDO_0021187	nct02659397	2015-12-31	0.2	26073387;25463109;24978142;24385236;23770179
+20	CHEMBL3545313	bempedoic acid 180 mg oral tablet	PHASE_2	LoF	protect	ADPKD (autosomal dominant polycystic kidney disease)	EFO_1001496	nct07282821	2026-02-01	0.2	36504724
+21	CHEMBL3545313	nilemdo (bempedoic acid) film-coated tablets	PHASE_1	LoF	protect	cardiovascular diseases	EFO_0000319	nct06923956	2024-12-04	0.1	
+22	CHEMBL3545313	bempedoic acid	PHASE_1	LoF	protect	dyslipidemia	MONDO_0002525	nct06742853	2024-12-20	0.1	
